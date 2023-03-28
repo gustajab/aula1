@@ -1,14 +1,16 @@
 <?php
 # documentos_novo.php
 require('twig_carregar.php');
-echo '<pre>';
-var_dump($_POST);
-
-var_dump($_FILES);
-echo '</pre>';
+require('func/sanitize_filename.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'POST' && !$_FILES['arquivo']['error']){
-    move_uploaded_file($_FILES['arquivo']['tmp_name'], 'uploads/' . $_FILES['arquivo']['name']);
+
+    $arquivo = sanitize_filename($_FILES['arquivo']['name']);
+    
+
+    move_uploaded_file($_FILES['arquivo']['tmp_name'], 'uploads/' . $arquivo);
+
+    
 }
 
     echo $twig->render('documentos_novo.html');
