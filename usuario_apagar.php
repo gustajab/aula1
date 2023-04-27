@@ -13,7 +13,7 @@
         $sql->execute([$id]);
         }
         
-        header('location: usuarios.php');
+        header('location:/usuarios');
             die;
         
     }
