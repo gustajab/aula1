@@ -1,36 +1,67 @@
-{# templates/usuarios.html #}
-
 {% extends "inc/base.html" %}
 
-{% block conteudo %} Usuários{% endblock %}
-    {% block conteudo %}Usuários{% endblock %}
-    <p>Listagem de usuários</p>
+{% block titulo %}Welcome to the jungle{% endblock %}
 
-        <table border="1">
-        <tr>
-            <th>Usuário</th>
-            <th>Admin</th>
-            <th>Ativo</th>
-        </tr>
 
-        {% for usr in usuarios %}
-        <!-- Linha para repetir -->
-        <tr>
-            <td><a href="/usuario_ver/{{usr.id}}">{{usr.username}}</a></td>
-            
-            <td>{{ usr.admin }}</td>
-            <td>{{ usr.ativo }}</td>
-            <td><a href="/usuario_apagar/{{usr.id}}">Apagar</a></td>
-        </tr>
-        <!-- / Linha para repetir -->
-        {% else %}
-        <tr>
-            <td colspan="2">Nenhum usuário</td>
-        </tr>
-        {% endfor %}
+{% block conteudo %}
+
+
+
+
+
+
+  <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+  <thead class="bg-gray-100 dark:bg-gray-700">
+    <tr>
+      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">Nome</th>
+      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">Admin</th>
+      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">Ativo</th>
+      <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">Funções</th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+  {% for usr in user %}
+    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+      <td  class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"><a href="usuario_ver/{{usr.id}}">{{ usr.username }}</a></td>
+      
+      
+      <td class="px-6 py-4">
+        <span class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3">
+            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+          </svg>
+          {{ usr.admin }}
+        </span>
+      </td>
+      <td class="px-6 py-4">
+        <span class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-3 w-3">
+            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+          </svg>
+          {{ usr.ativo }}
+        </span>
+      </td>
+      <td class="px-6 py-4">
         
-    </table>
+          <a x-data="{ tooltip: 'Delete' }" href="/usuario_apagar/{{ usr.id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6" x-tooltip="tooltip">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+          </a>
+        
+      </td>
+      
+    </tr><a href="novo_usuario.php">Adicionar usuário</a>
+    
+    {% endfor %}
 
-    <a href="novo_usuario.php">Adicionar usuário</a>
-    {% endblock %}
+  </tbody>
+</table> 
 
+
+
+
+
+
+
+{% endblock %}
