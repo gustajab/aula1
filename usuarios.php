@@ -10,5 +10,5 @@
     $usuarios = $usr->getAll(['ativo' => 1]);
 
     echo $twig->render('usuarios.html', [
-        'user' => $usuarios,
+        'usuarios' => $usuarios,
     ]);

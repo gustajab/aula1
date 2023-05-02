@@ -12,6 +12,7 @@ class Model
     private $user = 'root';
     private $password = null;
     
+    
     protected $table;
 
     protected $conex;

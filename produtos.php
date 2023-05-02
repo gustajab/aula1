@@ -1,34 +1,13 @@
 <?php
-    # produtos.php
-    require('vendor/autoload.php');
+   # /usuarios.php
+   require('verifica_login.php');
+   require('twig_carregar.php');
+   
+   require('models/Model.php');
+   require('models/Produto.php');
 
-    $loader = new \Twig\Loader\FilesystemLoader('./templates');
+   $prod = new Produto();
 
-    $twig = new \Twig\Environment($loader);
-
-    $template = $twig->load('produtos.html');
-
-    $produtos = [
-        [
-            'nome' => 'Chinelo',
-            'preco' => 30,
-        ],
-        [
-            'nome' => 'Camiseta',
-            'preco' => 50,
-        ],
-        [
-            'nome' => 'Boné',
-            'preco' => 39.9,
-        ],
-        [
-            'nome' => 'Automóvel simples',
-            'preco' => 350000,
-        ],
-    ];
-
-    echo $template->render([
-        'titulo' => 'Produtos',
-        // 'produtos' => $produtos,
-        'produtos' => null,
-    ]);
+   echo $twig->render('produtos.html', [
+       'produtos' => $prod,
+   ]);

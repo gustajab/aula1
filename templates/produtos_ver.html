@@ -1,0 +1,20 @@
+{% extends "inc/base.html" %} 
+
+{% block conteudo %} 
+    <p>Username: {{usuario.username}}</p>
+
+    <form action="/usuario_atualizar" method="post">
+        <input type="hidden" name="id" value="{{prod.id}}">
+        <div>
+            Produto:
+            <input type="text" name="nome" value="{{prod.nome}}">
+        </div>
+        <div>
+            Preço:
+            <input type="text" name="email" value="{{prod.preco}}">
+         </div>
+                     
+            <input type="submit" value="Atualizar">
+    </form>
+    
+{% endblock %}
